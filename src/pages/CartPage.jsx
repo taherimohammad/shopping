@@ -1,6 +1,7 @@
 import Layout from "../Layout/Layout";
 import {useCart, useCartActions} from "../Providers/CartProvider";
 import './cartPages.css'
+import {NavLink} from "react-router-dom";
 
 const CartPage = () => {
 	const {cart, total} = useCart();
@@ -30,20 +31,17 @@ const CartPage = () => {
 									</div>
 									<div>{item.name}</div>
 									<div>{item.price * item.quantity}</div>
-									<div>
-										<button onClick={() => decHandler(item)}>Remove</button>
+									<div className='btnGroup'>
+										<button onClick={() => decHandler(item)}>-</button>
 										<button>{item.quantity}</button>
-										<button onClick={() => incHandler(item)}>Add</button>
+										<button onClick={() => incHandler(item)}>+</button>
 									</div>
 								</div>
 							)
 						})
 						}
 					</section>
-					<section className='cartSummery'>
-						<h2>Cart Summery :</h2>
-						<p>{total}</p>
-					</section>
+					<CartSummery total={total} cart={cart}/>
 				</section>
 			</main>
 		</Layout>
@@ -51,3 +49,28 @@ const CartPage = () => {
 }
 
 export default CartPage;
+
+const CartSummery = ({total, cart}) => {
+	const mainTotal = cart.length ? cart.reduce((acc, curr) => acc + curr.quantity * curr.price, 0) : 0;
+	return (<section className='cartSummery'>
+			<h2>Cart Summery</h2>
+			<div>
+				<div className='summeryItem'>
+					<p>Cart Total :</p>
+					<p>{mainTotal} $</p>
+				</div>
+				<div className='summeryItem'>
+					<p>Cart Discount :</p>
+					<p>{mainTotal - total} $</p>
+				</div>
+				<div className='summeryItem'>
+					<p>Pay Price :</p>
+					<p>{total} $</p>
+				</div>
+			</div>
+		<NavLink to='/checkout'>
+			<button className='btn primary'>Go to checkout</button>
+		</NavLink>
+		</section>
+	);
+}

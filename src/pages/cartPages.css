@@ -14,32 +14,67 @@
     justify-content: space-between;
     border-bottom: 1px solid #cccccc;
 }
+
 .cartItem .itemImg {
     width: 100px;
     height: 100px;
     display: flex;
 }
+
 .cartItem Img {
     width: 100%;
     height: auto;
 }
-.cartSummery{
-    display: flex;
-    flex-direction: column;
-    background-color: #ffff;
-    border-radius: 5px;
-    border: 1px solid #cccccc;
-    width: 30%;
-    padding: 1rem;
-    margin-left: 1rem;
-}
-
-.cartCenter{
+.cartCenter {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     margin-top: 50px;
     max-width: 1170px;
     width: 90vw;
+}
 
+.cartSummery {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffff;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    width: 30%;
+    padding: 1rem;
+    margin-left: 1rem;
+    height: 100%;
+}
+
+.summeryItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.btnGroup button {
+    outline: none;
+    color: #6d28d9;
+    border: 1px solid #6d28d9;
+    padding: 5px 10px;
+    background-color: #FFFFFF;
+}
+
+.btnGroup button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.btnGroup button:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.btnGroup button:nth-child(2) {
+    border-left: 0;
+    border-right: 0;
+}
+.cartSummery button{
+    margin-top: 20px;
+    cursor: pointer;
 }
