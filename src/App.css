@@ -41,7 +41,7 @@ body {
 .product:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-.productImg{
+.productImg {
     object-fit: cover;
 }
 .productImg img {
@@ -55,7 +55,7 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-.btn{
+.btn {
     border: none;
     outline: none;
     padding: 5px 10px;
@@ -64,8 +64,17 @@ body {
     background-color: #ede9fe;
     color: #6d28d9;
 }
+.btn:focus {
+    border: 1px solid red;
+}
 
-.primary{
+.primary {
     background-color: #6d28d9;
     color: #ffff;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    background-color: #cccc;
+    color: #444;
 }

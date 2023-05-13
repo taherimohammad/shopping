@@ -77,4 +77,5 @@
 .cartSummery button{
     margin-top: 20px;
     cursor: pointer;
+    width: 100%;
 }

@@ -1,0 +1,42 @@
+.formContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.formControl {
+    margin-bottom: 20px;
+}
+
+.formContainer label {
+    font-weight: bold;
+    display: inline-flex;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="password"],
+input[type="email"],
+select {
+    width: 400px;
+    padding: 6px 12px;
+    display: block;
+    background-color: #ffff;
+    color: #444;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.error {
+    color: red;
+}
+
+.formContainer button {
+    width: 100%;
+    padding: 10px 0;
+}
+
+a > p {
+    margin-top: 1rem;
+}
