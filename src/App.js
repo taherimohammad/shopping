@@ -8,21 +8,25 @@ import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import AuthProvider from './Providers/AuthProvider';
+
 function App() {
     return (
         <Router>
-            <CartProvider>
-                <ToastContainer position="bottom-right" />
-                <Routes>
-                    <Route index element={<HomePage />} />
-                    <Route path="home" element={<HomePage />} />
-                    <Route path="cart" element={<CartPage />} />
-                    <Route path="checkout" element={<Checkout />} />
-                    <Route path="login" element={<LoginPage />} />
-                    <Route path="signup" element={<SignupPage />} />
-                    <Route path="*" element={<p>There's nothing here: 404!</p>} />
-                </Routes>
-            </CartProvider>
+            <AuthProvider>
+                <CartProvider>
+                    <ToastContainer position="bottom-right" />
+                    <Routes>
+                        <Route index element={<HomePage />} />
+                        <Route path="home" element={<HomePage />} />
+                        <Route path="cart" element={<CartPage />} />
+                        <Route path="checkout" element={<Checkout />} />
+                        <Route path="login" element={<LoginPage />} />
+                        <Route path="signup" element={<SignupPage />} />
+                        <Route path="*" element={<p>There's nothing here: 404!</p>} />
+                    </Routes>
+                </CartProvider>
+            </AuthProvider>
         </Router>
     );
 }

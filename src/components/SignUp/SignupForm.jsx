@@ -2,12 +2,22 @@ import Input from "../../common/input";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./signup.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { signupUser } from "../../services/signupService";
 import { toast } from "react-toastify";
+import { useAuth, useAuthAction } from "../../Providers/AuthProvider";
+import { useEffect } from "react";
 
 const SignupForm = () => {
   const navigate = useNavigate();
+  const setAuth = useAuthAction();
+  const auth = useAuth();
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/";
+
+  useEffect(() => {
+    if (auth) navigate(redirect, { replace: true });
+  }, [redirect, auth]);
 
   const initialValues = {
     name: "",
@@ -28,7 +38,8 @@ const SignupForm = () => {
 
     try {
       const { data } = await signupUser(userData);
-      navigate("/");
+      setAuth(data);
+      navigate(`/${redirect}`);
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -81,7 +92,7 @@ const SignupForm = () => {
         >
           Signup
         </button>
-        <NavLink to="/login">
+        <NavLink to={`/login?redirect=${redirect}`}>
           <p> Already login ?</p>
         </NavLink>
       </form>
