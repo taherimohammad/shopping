@@ -2,9 +2,13 @@ import Input from "../../common/input";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./signup.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { signupUser } from "../../services/signupService";
+import { toast } from "react-toastify";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
+
   const initialValues = {
     name: "",
     email: "",
@@ -13,9 +17,23 @@ const SignupForm = () => {
     passwordConfirm: "",
   };
 
-  const onSubmit = (value) => {
-    console.log({ value });
+  const onSubmit = async (values) => {
+    const { name, email, phoneNumber, password } = values;
+    const userData = {
+      name,
+      email,
+      phoneNumber,
+      password,
+    };
+
+    try {
+      const { data } = await signupUser(userData);
+      navigate("/");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   };
+
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
     email: Yup.string().required("Email is required"),
